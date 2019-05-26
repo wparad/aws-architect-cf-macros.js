@@ -1,0 +1,52 @@
+{
+  "name": "aws-architect-cf-macros",
+  "version": "0.0.0",
+  "description": "AWS Architect related macros",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "scripts": {
+    "lint": "eslint --ext .js tests lib",
+    "test": "mocha tests/**/*.js -R spec"
+  },
+  "bin": {
+    "aws-architect-cf-macros": "./bin/aws-architect-cf-macros.js"
+  },
+  "dependencies": {
+    "aws-architect": "^6.2.538",
+    "aws-sdk": "*",
+    "commander": "^2.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "ci-build-tools": "^1.0.13",
+    "eslint-config-cimpress-atsquad": "^1.0.67",
+    "fs-extra": "^6.0.1",
+    "glob": "^5.0.15",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wparad/aws-architect-cf-macros.js.git"
+  },
+  "keywords": [
+    "aws",
+    "aws architect",
+    "cloud formation",
+    "cloud formation macros",
+    "cf macros",
+    "macros"
+  ],
+  "author": "Warren Parad <wparad@gmail.com> (http://wparad.github.io)",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/wparad/aws-architect-cf-macros.js/issues"
+  },
+  "homepage": "https://github.com/wparad/aws-architect-cf-macros.js#readme",
+  "engines": {
+    "node": ">=8.9.4"
+  }
+}

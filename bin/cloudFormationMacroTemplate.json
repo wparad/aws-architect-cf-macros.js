@@ -1,0 +1,78 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AWS Architect Macros",
+
+  "Parameters": {
+    "deploymentBucketName": {
+      "Type": "String",
+      "Description": "The bucket where deployment artifacts are kept"
+    },
+    "deploymentKeyName": {
+      "Type": "String",
+      "Description": "The location of the s3 lambda.zip file in the bucket"
+    }
+  },
+
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "AwsArchitectMacroFunction",
+        "Description": "AWS Architect Macro function",
+        "Handler": "index.handler",
+        "Runtime": "nodejs10.x",
+        "Code": {
+          "S3Bucket": { "Ref": "deploymentBucketName" },
+          "S3Key": { "Ref": "deploymentKeyName" }
+        },
+        "MemorySize": 128,
+        "Timeout": 60,
+        "Role": { "Fn::GetAtt": ["LambdaRole", "Arn"] }
+      }
+    },
+    "LambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "AwsArchitectMacroFunctionLambdaRole",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [ "lambda.amazonaws.com" ]
+              },
+              "Action": [ "sts:AssumeRole" ]
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ],
+        "Path": "/"
+      }
+    },
+
+    "PermissionForMacroToInvokeLambda": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [ "LambdaFunction", "Arn" ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "cloudformation.amazonaws.com"
+      }
+    },
+
+    "Macro": {
+      "Type": "AWS::CloudFormation::Macro",
+      "Properties": {
+        "Name": "AwsArchitectMacros",
+        "Description": "AWS Architect Macro Provides various add on functionality to make CF templates simplier",
+        "FunctionName": {
+          "Fn::GetAtt": [ "LambdaFunction", "Arn" ]
+        }
+      }
+    }
+  }
+}
