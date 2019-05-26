@@ -2,7 +2,6 @@
 
 const path = require('path');
 const commander = require('commander');
-const aws = require('aws-sdk');
 
 const packageMetadataFile = path.join(__dirname, '..', 'package.json');
 const packageMetadata = require(packageMetadataFile);
@@ -14,9 +13,9 @@ commander
   .option('-p, --profile <profile>', 'set the AWS profile to use')
   .action(async (bucket, options) => {
     if (options && options.profile) {
-      aws.config.credentials = new aws.SharedIniFileCredentials({ profile: options.profile });
+      process.env.AWS_SDK_LOAD_CONFIG = true;
+      process.env.AWS_PROFILE = options.profile;
     }
-
     const AwsArchitect = require('aws-architect');
     let apiOptions = {
       deploymentBucket: bucket,

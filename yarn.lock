@@ -135,10 +135,10 @@ async@^2.0.0:
   dependencies:
     lodash "^4.17.11"
 
-aws-architect@^6.2.538:
-  version "6.2.538"
-  resolved "https://registry.yarnpkg.com/aws-architect/-/aws-architect-6.2.538.tgz#dc75a7d1d39abbe2b02aebccf9d53b0736430c0d"
-  integrity sha512-Slim0yGjNjh+TifnjDJZSnY2nqaaaH3flqlFmB7ntU5ODq5nvmeIwQwCX1XkTTO0FL7k2PFVegKSEInVgM8dcA==
+aws-architect@^6.2.540:
+  version "6.2.540"
+  resolved "https://registry.yarnpkg.com/aws-architect/-/aws-architect-6.2.540.tgz#febeeb2612ee9bcec37c17d484a9859722456407"
+  integrity sha512-cY4o3dY0ohbYZmz53ahilP0aaH1QTaaWCxvHy0vTzS/ti96ECuSHOQefv/EVWPVOcojXcYcOwa0+0zOcFTQFuw==
   dependencies:
     archiver "^3.0.0"
     body-parser "^1.18.2"

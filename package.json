@@ -15,7 +15,7 @@
     "aws-architect-cf-macros": "./bin/aws-architect-cf-macros.js"
   },
   "dependencies": {
-    "aws-architect": "^6.2.538",
+    "aws-architect": "^6.2.540",
     "aws-sdk": "*",
     "commander": "^2.5.0"
   },
