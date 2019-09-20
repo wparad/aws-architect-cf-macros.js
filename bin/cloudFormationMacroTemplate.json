@@ -26,7 +26,7 @@
           "S3Key": { "Ref": "deploymentKeyName" }
         },
         "MemorySize": 128,
-        "Timeout": 60,
+        "Timeout": 300,
         "Role": { "Fn::GetAtt": ["LambdaRole", "Arn"] }
       }
     },

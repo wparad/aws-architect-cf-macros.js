@@ -32,13 +32,13 @@ describe('createRoute53DnsValidationRecord.js', () => {
         }
       },
       {
-        name: 'Deletes CertificateArn',
+        name: 'Deletes resource property CertificateName',
         resourceName: 'UnitTest',
         calloutResource: {
           Type: 'unit-test-type',
           Properties: {
             unit: 'test',
-            CertificateArn: 'unit-test-cert-arn'
+            CertificateName: 'unit-test-cert-arn'
           }
         },
         expectedResult: {
@@ -46,7 +46,7 @@ describe('createRoute53DnsValidationRecord.js', () => {
             Type: 'unit-test-type',
             Properties: {
               unit: 'test',
-              CertificateArn: 'unit-test-cert-arn'
+              CertificateName: 'unit-test-cert-arn'
             }
           },
           UnitTest: {
