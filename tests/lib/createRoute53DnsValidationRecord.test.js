@@ -26,7 +26,7 @@ describe('createRoute53DnsValidationRecord.js', () => {
             Properties: {
               unit: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
-              ResourceRecords: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }
+              ResourceRecords: [{ 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }]
             }
           }
         }
@@ -54,7 +54,7 @@ describe('createRoute53DnsValidationRecord.js', () => {
             Properties: {
               unit: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
-              ResourceRecords: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }
+              ResourceRecords: [{ 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }]
             }
           }
         }
