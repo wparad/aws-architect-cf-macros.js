@@ -33,7 +33,8 @@
     "LambdaRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-        "RoleName": "AwsArchitectMacroFunctionLambdaRole",
+        "RoleName": { "Fn::Sub": "AwsArchitectMacroFunctionLambdaRole-${AWS::Region}" },
+        "Description": "AWS Architect Macros: Role to execute Lambda function",
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
