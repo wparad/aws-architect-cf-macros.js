@@ -9,7 +9,7 @@ After reviewing the source code to make sure there isn't anything in there you d
 
 ```sh
   npm install -g aws-architect-cf-macros
-  aws-architect-cf-macros deploy TMP_DEPLOYMENT_BUCKET --profile PROFILE_NAME
-
+  aws-architect-cf-macros deploy TMP_DEPLOYMENT_BUCKET --profile PROFILE_NAME --region AWS_REGION
 ```
 
+Parameters `profile` and `region` are optional. If not specified, take the default depending on your AWS settings.
