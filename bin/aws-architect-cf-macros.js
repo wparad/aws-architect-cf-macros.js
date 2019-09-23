@@ -9,8 +9,9 @@ const packageMetadata = require(packageMetadataFile);
 commander
   .command('deploy <bucket>')
   .description('Deploy the AWS Architect macro to your default region from an s3 bucket.')
-  .usage('deploy <bucket> --profile PROFILE_NAME')
+  .usage('deploy <bucket> --profile PROFILE_NAME --region REGION')
   .option('-p, --profile <profile>', 'set the AWS profile to use')
+  .option('-r, --region <region>', 'uses the AWS region')
   .action(async (bucket, options) => {
     if (options && options.profile) {
       process.env.AWS_SDK_LOAD_CONFIG = true;
@@ -22,6 +23,9 @@ commander
       sourceDirectory: path.join(__dirname, '..', 'lib'),
       description: 'AWS Architect Macro'
     };
+    if (options && options.region) {
+      apiOptions.regions = [options.region];
+    }
     let awsArchitect = new AwsArchitect(packageMetadata, apiOptions);
     let stackTemplate = require('./cloudFormationMacroTemplate.json');
 
