@@ -11,20 +11,20 @@ describe('createRoute53DnsValidationRecord.js', () => {
         calloutResource: {
           Type: 'unit-test-type',
           Properties: {
-            unit: 'test'
+            DomainName: 'test'
           }
         },
         expectedResult: {
           Route53ValidationForUnitTest: {
             Type: 'unit-test-type',
             Properties: {
-              unit: 'test'
+              DomainName: 'test'
             }
           },
           UnitTest: {
             Type: 'AWS::Route53::RecordSet',
             Properties: {
-              unit: 'test',
+              DomainName: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
               ResourceRecords: [{ 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }]
             }
@@ -37,7 +37,7 @@ describe('createRoute53DnsValidationRecord.js', () => {
         calloutResource: {
           Type: 'unit-test-type',
           Properties: {
-            unit: 'test',
+            DomainName: 'test',
             CertificateName: 'unit-test-cert-arn'
           }
         },
@@ -45,14 +45,14 @@ describe('createRoute53DnsValidationRecord.js', () => {
           Route53ValidationForUnitTest: {
             Type: 'unit-test-type',
             Properties: {
-              unit: 'test',
+              DomainName: 'test',
               CertificateName: 'unit-test-cert-arn'
             }
           },
           UnitTest: {
             Type: 'AWS::Route53::RecordSet',
             Properties: {
-              unit: 'test',
+              DomainName: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
               ResourceRecords: [{ 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }]
             }
