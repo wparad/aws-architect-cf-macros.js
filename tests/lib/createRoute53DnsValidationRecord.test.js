@@ -11,14 +11,19 @@ describe('createRoute53DnsValidationRecord.js', () => {
         calloutResource: {
           Type: 'unit-test-type',
           Properties: {
-            DomainName: 'test'
+            DomainName: 'test',
+            Properties: {}
           }
         },
         expectedResult: {
           Route53ValidationForUnitTest: {
             Type: 'unit-test-type',
             Properties: {
-              DomainName: 'test'
+              Function: undefined,
+              ServiceToken: undefined,
+              Properties: {
+                CertificateName: undefined
+              }
             }
           },
           UnitTest: {
@@ -38,15 +43,19 @@ describe('createRoute53DnsValidationRecord.js', () => {
           Type: 'unit-test-type',
           Properties: {
             DomainName: 'test',
-            CertificateName: 'unit-test-cert-arn'
+            CertificateName: 'unit-test-cert-arn',
+            Properties: {}
           }
         },
         expectedResult: {
           Route53ValidationForUnitTest: {
             Type: 'unit-test-type',
             Properties: {
-              DomainName: 'test',
-              CertificateName: 'unit-test-cert-arn'
+              Function: undefined,
+              ServiceToken: undefined,
+              Properties: {
+                CertificateName: 'unit-test-cert-arn'
+              }
             }
           },
           UnitTest: {
