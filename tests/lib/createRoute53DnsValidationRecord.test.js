@@ -23,6 +23,7 @@ describe('createRoute53DnsValidationRecord.js', () => {
           },
           UnitTest: {
             Type: 'AWS::Route53::RecordSet',
+            Condition: undefined,
             Properties: {
               unit: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
@@ -51,6 +52,38 @@ describe('createRoute53DnsValidationRecord.js', () => {
           },
           UnitTest: {
             Type: 'AWS::Route53::RecordSet',
+            Condition: undefined,
+            Properties: {
+              unit: 'test',
+              Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
+              ResourceRecords: [{ 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordValue'] }]
+            }
+          }
+        }
+      },
+      {
+        name: 'Copies Condition',
+        resourceName: 'UnitTest',
+        calloutResource: {
+          Type: 'unit-test-type',
+          Condition: 'Unit-test-Condition',
+          Properties: {
+            unit: 'test',
+            CertificateName: 'unit-test-cert-arn'
+          }
+        },
+        expectedResult: {
+          Route53ValidationForUnitTest: {
+            Type: 'unit-test-type',
+            Condition: 'Unit-test-Condition',
+            Properties: {
+              unit: 'test',
+              CertificateName: 'unit-test-cert-arn'
+            }
+          },
+          UnitTest: {
+            Type: 'AWS::Route53::RecordSet',
+            Condition: 'Unit-test-Condition',
             Properties: {
               unit: 'test',
               Name: { 'Fn::GetAtt': ['Route53ValidationForUnitTest', 'VerificationRecordName'] },
